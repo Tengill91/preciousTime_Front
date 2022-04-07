@@ -1,29 +1,38 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import UserService from "../services/user.service";
+import AuthService from "../services/auth.service";
 const Home = () => {
-  const [content, setContent] = useState("");
+  const [sidebarShow, setSideBarShow] = useState(false);
+  const [showModeratorBoard, setShowModeratorBoard] = useState(false);
+  const [showAdminBoard, setShowAdminBoard] = useState(false);
+  const [currentUser, setCurrentUser] = useState(undefined);
+
   useEffect(() => {
-    UserService.getPublicContent().then(
-      (response) => {
-        setContent(response.data);
-      },
-      (error) => {
-        const _content =
-          (error.response && error.response.data) ||
-          error.message ||
-          error.toString();
-        setContent(_content);
-      }
-    );
+    const user = AuthService.getCurrentUser();
+    if (user) {
+      setCurrentUser(user);
+      setShowModeratorBoard(user.roles.includes("ROLE_MODERATOR"));
+      setShowAdminBoard(user.roles.includes("ROLE_ADMIN"));
+    }
   }, []);
+
+  const logOut = () => {
+    AuthService.logout();
+  };
+
   return (
     <div className="homePage">
       <div className="loginText">
         <h1>{"Welcome"}</h1>
-        <Link to={"/login"} >
-          <h1>{"Login"}</h1>
-        </Link>
+        {currentUser ? (
+          <Link to={"/login"} onClick={logOut}>
+            <h1>{"Logout"}</h1>
+          </Link>
+        ) : (
+          <Link to={"/login"}>
+            <h1>{"Login"}</h1>
+          </Link>
+        )}
       </div>
     </div>
   );

@@ -1,12 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import { SidebarData } from "./SidebarData";
 import { IconContext } from "react-icons";
+import AuthService from "../services/auth.service";
+import Home from "./Home";
 
 function Navbar() {
   const [sidebarShow, setSideBarShow] = useState(false);
+  const [showModeratorBoard, setShowModeratorBoard] = useState(false);
+  const [showAdminBoard, setShowAdminBoard] = useState(false);
+  const [currentUser, setCurrentUser] = useState(undefined);
+
+  useEffect(() => {
+    const user = AuthService.getCurrentUser();
+    if (user) {
+      setCurrentUser(user);
+      setShowModeratorBoard(user.roles.includes("ROLE_MODERATOR"));
+      setShowAdminBoard(user.roles.includes("ROLE_ADMIN"));
+    }
+  }, []);
+
+  const logOut = () => {
+    AuthService.logout();
+  };
 
   const showSidebar = () => setSideBarShow(!sidebarShow);
 
@@ -15,28 +33,82 @@ function Navbar() {
       {/*IconContext = styleing för alla iconer*/}
       <IconContext.Provider value={{ color: "#fff" }}>
         <div className="navbar">
-          <Link to={"/#"} className="menu-bars">
-            <FaIcons.FaBars onClick={showSidebar} />
-          </Link>
+          <div className="navbarHamburger">
+            <div className="menu-bars">
+              <FaIcons.FaBars onClick={showSidebar} />
+            </div>
+          </div>
+          <div>
+            <p className="navbarText">preciousTime</p>
+          </div>
+          <div>
+            <p className="navbarText">Hello there</p>
+          </div>
         </div>
         <nav className={sidebarShow ? "nav-menu active" : "nav-menu"}>
           <ul className="nav-menu-items" onClick={showSidebar}>
             <li className="navbar-toggle">
-              <Link to={"/#"} className="menu-bars">
+              <div className="menu-bars">
                 <AiIcons.AiOutlineClose />
-              </Link>
+              </div>
             </li>
-            {SidebarData.map((item, index) => {
-              return (
-                <li key={index} className={item.cName}>
-                  <Link to={item.path}>
-                    {item.icon}
-                    {/* kolla upp span? */}
-                    <span>{item.title}</span>
+            <div className="navbar-nav mr-auto">
+              <li className="nav-text">
+                <Link to={"/home"} className="nav-link">
+                  <AiIcons.AiFillHome />
+                  <span>Home</span>
+                </Link>
+              </li>
+              {showModeratorBoard && (
+                <li className="nav-text">
+                  <Link to={"/mod"} className="nav-link">
+                    <AiIcons.AiFillHome />
+                    <span>Moderator Board</span>
                   </Link>
                 </li>
-              );
-            })}
+              )}
+              {showAdminBoard && (
+                <li className="nav-text">
+                  <Link to={"/admin"} className="nav-link">
+                    <AiIcons.AiFillHome />
+                    <span>Admin Board</span>
+                  </Link>
+                </li>
+              )}
+              {currentUser && (
+                <li className="nav-text">
+                  <Link to={"/user"} className="nav-link">
+                    <AiIcons.AiFillHome />
+                    <span>User</span>
+                  </Link>
+                </li>
+              )}
+            </div>
+            {currentUser ? (
+              <div className="navbar-nav ml-auto">
+                <li className="nav-text">
+                  <Link to={"/profile"} className="nav-link">
+                    <AiIcons.AiFillHome />
+                    <span>{currentUser.username}</span>
+                  </Link>
+                </li>
+                <li className="nav-text">
+                  <a href="/login" className="nav-link" onClick={logOut}>
+                    <AiIcons.AiFillHome />
+                    <span>LogOut</span>
+                  </a>
+                </li>
+              </div>
+            ) : (
+              <div className="navbar-nav ml-auto">
+                <li className="nav-text">
+                  <Link to={"/login"} className="nav-link">
+                    <AiIcons.AiFillHome />
+                    <span>Login</span>
+                  </Link>
+                </li>
+              </div>
+            )}
           </ul>
         </nav>
       </IconContext.Provider>

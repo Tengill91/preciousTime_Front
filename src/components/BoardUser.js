@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+
+import DoughnutChart from "../charts/DoughnutChart";
 import UserService from "../services/user.service";
 const BoardUser = () => {
   const [content, setContent] = useState("");
@@ -19,10 +21,8 @@ const BoardUser = () => {
     );
   }, []);
   return (
-    <div className="container">
-      <header className="jumbotron">
-        <h3>{content}</h3>
-      </header>
+    <div className="user">
+      <DoughnutChart />
     </div>
   );
 };
