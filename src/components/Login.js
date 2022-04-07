@@ -91,11 +91,11 @@ const Login = () => {
               {loading && (
                 <span className="spinner-border spinner-border-sm"></span>
               )}
-              <span className="navLink">Login</span>
+              <span className="button-text">Login</span>
             </button>
             <button className="registerButton">
               <Link to={"/register"} className="navLink">
-                Register
+                <span className="button-text">Register</span>
               </Link>
             </button>
           </div>

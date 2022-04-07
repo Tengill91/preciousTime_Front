@@ -20,11 +20,9 @@ const Home = () => {
   return (
     <div className="homePage">
       <div className="loginText">
-        <Link to={"/login"} className="navLink">
-          <h1 className="loginLink">{"Welcome"}</h1>
-        </Link>
-        <Link to={"/login"} className="navLink">
-          <h1 className="loginLink">{"Login"}</h1>
+        <h1>{"Welcome"}</h1>
+        <Link to={"/login"} >
+          <h1>{"Login"}</h1>
         </Link>
       </div>
     </div>

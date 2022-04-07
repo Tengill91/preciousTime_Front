@@ -10,6 +10,7 @@ import Profile from "./components/Profile";
 import BoardUser from "./components/BoardUser";
 import BoardModerator from "./components/BoardModerator";
 import BoardAdmin from "./components/BoardAdmin";
+import Navbar from "./components/Navbar";
 
 //Todo add automatic signout
 const App = () => {
@@ -28,15 +29,8 @@ const App = () => {
     AuthService.logout();
   };
   return (
-    <div>
-      <div className="navbar">
-        <div className="navLinkDiv">
-          <Link to={"/home"} className="navLink">
-            PreciousTime
-          </Link>
-        </div>
-
-      </div>
+    <div className="App">
+      <Navbar />
 
       <div className="">
         <Routes>
