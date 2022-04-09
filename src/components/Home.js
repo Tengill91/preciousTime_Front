@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import AuthService from "../services/auth.service";
+
+import "./componentCss/Home.css"
 const Home = () => {
   const [sidebarShow, setSideBarShow] = useState(false);
   const [showModeratorBoard, setShowModeratorBoard] = useState(false);
@@ -23,7 +25,6 @@ const Home = () => {
   return (
     <div className="homePage">
       <div className="loginText">
-        <h1>{"Welcome"}</h1>
         {currentUser ? (
           <Link to={"/login"} onClick={logOut}>
             <h1>{"Logout"}</h1>

@@ -5,7 +5,8 @@ import * as AiIcons from "react-icons/ai";
 import { SidebarData } from "./SidebarData";
 import { IconContext } from "react-icons";
 import AuthService from "../services/auth.service";
-import Home from "./Home";
+
+import "./componentCss/Navbar.css";
 
 function Navbar() {
   const [sidebarShow, setSideBarShow] = useState(false);

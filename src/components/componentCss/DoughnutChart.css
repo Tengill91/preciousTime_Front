@@ -1,0 +1,39 @@
+/* doughnut */
+.doughnut{
+    /* background-image: linear-gradient(to top, #043b5f , 	#B6D0E2 ); */
+    display: flex;
+    white-space: pre-line;
+    height: 95vh;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 3rem;
+    text-align: center;
+  }
+    .fade-in-text {
+      animation: fadeIn linear 3s;
+      -webkit-animation: fadeIn linear 3s;
+      -moz-animation: fadeIn linear 3s;
+      -o-animation: fadeIn linear 3s;
+      -ms-animation: fadeIn linear 3s;
+    }
+    
+    @keyframes fadeIn {
+      0% {opacity:0;}
+      100% {opacity:1;}
+    }
+    
+    @-moz-keyframes fadeIn {
+      0% {opacity:0;}
+      100% {opacity:1;}
+    }
+    
+    @-webkit-keyframes fadeIn {
+      0% {opacity:0;}
+      100% {opacity:1;}
+    }
+    
+    @-o-keyframes fadeIn {
+      0% {opacity:0;}
+      100% {opacity:1;}
+    }

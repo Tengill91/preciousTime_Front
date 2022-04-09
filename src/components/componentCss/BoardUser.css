@@ -1,0 +1,12 @@
+/* Userpage */
+.user{
+    background-image: linear-gradient(to top, #043b5f , 	#B6D0E2 );
+    display: flex;
+    white-space: pre-line;
+    height: 95vh;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 3rem;
+    text-align: center;
+  }
