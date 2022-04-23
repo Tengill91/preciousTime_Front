@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import UserService from "../services/user.service";
+import CreateQuestionForm from "./CreateQuestionForm";
 const BoardModerator = () => {
   const [content, setContent] = useState("");
   useEffect(() => {
@@ -21,7 +22,7 @@ const BoardModerator = () => {
   return (
     <div className="container">
       <header className="jumbotron">
-        <h3>{content}</h3>
+        <CreateQuestionForm />
       </header>
     </div>
   );
