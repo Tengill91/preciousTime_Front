@@ -34,16 +34,14 @@ function Navbar() {
       {/*IconContext = styleing för alla iconer*/}
       <IconContext.Provider value={{ color: "#fff" }}>
         <div className="navbar">
-          <div className="navbarHamburger">
-            <div className="menu-bars">
-              <FaIcons.FaBars onClick={showSidebar} />
-            </div>
+          <div className="menu-bars">
+            <FaIcons.FaBars onClick={showSidebar} />
           </div>
-          <div>
-            <p className="navbarText">preciousTime</p>
+          <div className="navbarText">
+            <p>preciousTime</p>
           </div>
-          <div>
-            <p className="navbarText">Hello there</p>
+          <div className="navbarText">
+            <p>Hello there</p>
           </div>
         </div>
         <nav className={sidebarShow ? "nav-menu active" : "nav-menu"}>

@@ -29,6 +29,7 @@ const BoardAdmin = () => {
         <h3>{content}</h3>
       </header>
       <div>
+        <h1>hello</h1>
         <CreateQuestionForm />
       </div>
     </div>
