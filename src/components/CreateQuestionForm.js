@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { lazy, useEffect, useState } from "react";
 //import EventBus from "../security/common/EventBus";
+import "./componentCss/CreateQuestionForm.css";
 import AuthService from "../services/auth.service";
 import CrudService from "../services/CrudService";
 
@@ -8,7 +9,8 @@ const CreateQuestionForm = () => {
   const [label, setLabel] = useState("");
   const [question, setQuestion] = useState("");
   const [allQuestionsList, setAllQuestionsList] = useState([]);
-  const [challengedFriend, setChallengedFriend] = useState("");
+  const [allLabelsList, setAllLabelsList] = useState([]);
+
 
   useEffect(() => {
     CrudService.getAllQuestions().then(
@@ -27,13 +29,44 @@ const CreateQuestionForm = () => {
     );
   }, []);
 
+  useEffect(() => {
+    CrudService.getAllLabels().then(
+      (response) => {
+        setAllLabelsList(response.data);
+      },
+      (error) => {
+        const _questions =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+        setAllLabelsList(_questions);
+      }
+    );
+  }, []);
+
   const saveQuestionToApi = () => {
     console.log("hello from saveQuestionToApi");
     CrudService.saveQuestion(question, label)
       .then((response) => {
         console.log(response.data);
         this.setState({
-          message: "The user was saved successfully!",
+          message: "The question was saved successfully!",
+        });
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
+  const deleteQuestionFromApi = (id) => {
+    console.log("hello from deleteQuestionFromApi");
+    CrudService.deleteQuestion(id)
+      .then((response) => {
+        console.log(response.data);
+        this.setState({
+          message: "The question was deleted successfully!",
         });
       })
       .catch((e) => {
@@ -42,19 +75,19 @@ const CreateQuestionForm = () => {
   };
 
   return (
-    <div className="boardcontainer">
-      <form id="form-user">
+    <div className="createQuestionPage">
+      <form id="form-question">
         <div className="form-box">
-          <label>Select label</label>
+          <label>Create question</label>
           <select
-            id="input-friends"
+            id="input-label"
             value={label}
             onChange={(e) => setLabel(e.target.value)}
           >
-            <option>-Questions-</option>
-            {allQuestionsList.map((questionApi) => (
-              <option key={questionApi.id} value={questionApi.id}>
-                {questionApi.id + ". " + questionApi.question}
+            <option>-Labels-</option>
+            {allLabelsList.map((labelApi) => (
+              <option key={labelApi.id} value={label.id}>
+                {labelApi.id + ". " + labelApi.label}
               </option>
             ))}
           </select>
@@ -73,8 +106,31 @@ const CreateQuestionForm = () => {
         </div>
 
         <div className="buttons">
-          <button>Cancel</button>
-          <button onClick={saveQuestionToApi}>Send</button>
+          <button className="btnCancel">
+            <p className="btnText">Cancel</p>
+          </button>
+          <button className="btnSend" onClick={saveQuestionToApi}>
+            <p className="btnText">Send</p>
+          </button>
+        </div>
+
+        <div>
+          <p>--Questions--</p>
+          {allQuestionsList.map((questionApi) => (
+            <li
+              className="listItems"
+              key={questionApi.id}
+              value={questionApi.id}
+            >
+              {questionApi.id + ". " + questionApi.question}
+              <button
+                className="btnDelete"
+                onClick={() => deleteQuestionFromApi(questionApi.id)}
+              >
+                <p className="btnText">Delete</p>
+              </button>
+            </li>
+          ))}
         </div>
       </form>
     </div>

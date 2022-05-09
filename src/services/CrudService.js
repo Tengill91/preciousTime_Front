@@ -18,6 +18,13 @@ class CrudService {
     });
   }
 
+  getAllLabels() {
+    return axios.get(CRUD_API_URL + "/allLabels", {
+      headers: authHeader(),
+      "Response-type": "application/json",
+    });
+  }
+
   getUser(id) {
     return axios.get(CRUD_API_URL + `/user/${id}`, {
       headers: authHeader(),
@@ -37,8 +44,11 @@ class CrudService {
     });
   }
 
-  delete(id) {
-    return axios.delete(`/tutorials/${id}`);
+  deleteQuestion(id) {
+    return axios.delete(CRUD_API_URL + `/deleteQuestion/${id}`);
+  }
+  deleteLabel(id) {
+    return axios.delete(CRUD_API_URL + `/deleteLabel/${id}`);
   }
 
   deleteAll() {
@@ -64,11 +74,24 @@ class CrudService {
     });
   }
 
-  saveQuestion(question,label) {
+  saveQuestion(question, label) {
     //challenge is a param name for our data
     return axios.post(
       CRUD_API_URL + `/addQuestion`,
-      { question,label },
+      { question, label },
+      {
+        headers: authHeader(),
+        "Content-type": "application/json",
+        "Response-type": "application/json",
+      }
+    );
+  }
+
+  saveLabel(label) {
+    //challenge is a param name for our data
+    return axios.post(
+      CRUD_API_URL + `/addLabel`,
+      { label },
       {
         headers: authHeader(),
         "Content-type": "application/json",

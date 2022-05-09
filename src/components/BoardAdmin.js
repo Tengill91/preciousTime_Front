@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 
 import UserService from "../services/user.service";
 import CreateQuestionForm from "./CreateQuestionForm";
+import CreateLabelForm from "./CreateLabelForm";
+import "./componentCss/BoardAdmin.css";
 const BoardAdmin = () => {
   const [content, setContent] = useState("");
 
@@ -24,12 +26,11 @@ const BoardAdmin = () => {
   }, []);
 
   return (
-    <div className="container">
-      <header className="jumbotron">
-        <h3>{content}</h3>
-      </header>
-      <div>
-        <h1>hello</h1>
+    <div className="adminPage">
+      <div className="adminCard">
+        <CreateLabelForm />
+      </div>
+      <div className="adminCard">
         <CreateQuestionForm />
       </div>
     </div>

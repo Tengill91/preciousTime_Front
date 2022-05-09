@@ -41,7 +41,7 @@ function DoughnutChart() {
       <div className="fade-in-text">
         <h1>How will you spend your time today?</h1>
       </div>
-      <div style={{ width: "600px" }}>
+      <div style={{ width: "80%" }}>
         <Doughnut
           data={doughnutData}
           options={{

@@ -8,6 +8,7 @@
 }
 
 .App {
+  height: 100vh;
   background-image: url(../public/images/loginMountain.jpg); 
   background-repeat: no-repeat;
   background-position: center;
