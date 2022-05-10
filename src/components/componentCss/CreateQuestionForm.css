@@ -1,7 +1,7 @@
 .buttons {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    
     margin-top: 20px;
   
   }
@@ -48,10 +48,22 @@
     margin: 0px;
   }
 
+  .listBox{
+      display: flex;
+      flex-direction: column;
+      height: fit-content;
+      max-height: 250px;
+      background-color: gainsboro;
+      overflow: auto;
+      border-radius: 4px;
+      
+  }
+
   .listItems{
     display: flex;
     align-content: center;
     justify-content: space-between;
     margin-top: 4px;
+    
 
   }

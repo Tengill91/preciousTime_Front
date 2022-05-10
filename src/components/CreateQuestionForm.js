@@ -10,7 +10,7 @@ const CreateQuestionForm = () => {
   const [question, setQuestion] = useState("");
   const [allQuestionsList, setAllQuestionsList] = useState([]);
   const [allLabelsList, setAllLabelsList] = useState([]);
-
+  const [labelId, setLabelId] = useState();
 
   useEffect(() => {
     CrudService.getAllQuestions().then(
@@ -47,17 +47,21 @@ const CreateQuestionForm = () => {
   }, []);
 
   const saveQuestionToApi = () => {
-    console.log("hello from saveQuestionToApi");
-    CrudService.saveQuestion(question, label)
-      .then((response) => {
-        console.log(response.data);
-        this.setState({
-          message: "The question was saved successfully!",
+    console.log(labelId);
+    if (label !== "" && question !== "") {
+      CrudService.saveQuestion(question, label)
+        .then((response) => {
+          console.log(response.data);
+          this.setState({
+            message: "The question was saved successfully!",
+          });
+        })
+        .catch((e) => {
+          console.log(e);
         });
-      })
-      .catch((e) => {
-        console.log(e);
-      });
+    } else {
+      alert("Did you forget to write a question or add a label?");
+    }
   };
 
   const deleteQuestionFromApi = (id) => {
@@ -74,6 +78,18 @@ const CreateQuestionForm = () => {
       });
   };
 
+  /* useEffect(() => {
+  function getLabelIdfromLabelName() {
+    allLabelsList?.map((objekt) => {
+      if (label === objekt.label) {
+        setLabelId(objekt.id);
+      }
+      return null;
+    });
+  }
+  getLabelIdfromLabelName()
+}, [labelId,label]); */
+
   return (
     <div className="createQuestionPage">
       <form id="form-question">
@@ -87,7 +103,7 @@ const CreateQuestionForm = () => {
             <option>-Labels-</option>
             {allLabelsList.map((labelApi) => (
               <option key={labelApi.id} value={label.id}>
-                {labelApi.id + ". " + labelApi.label}
+                {labelApi.label}
               </option>
             ))}
           </select>
@@ -106,16 +122,18 @@ const CreateQuestionForm = () => {
         </div>
 
         <div className="buttons">
-          <button className="btnCancel">
-            <p className="btnText">Cancel</p>
-          </button>
           <button className="btnSend" onClick={saveQuestionToApi}>
             <p className="btnText">Send</p>
+          </button>
+          <button className="btnCancel">
+            <p className="btnText">Cancel</p>
           </button>
         </div>
 
         <div>
           <p>--Questions--</p>
+        </div>
+        <div className="listBox">
           {allQuestionsList.map((questionApi) => (
             <li
               className="listItems"

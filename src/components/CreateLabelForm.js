@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 //import EventBus from "../security/common/EventBus";
-import "./componentCss/CreateQuestionForm.css";
+import "./componentCss/CreateLabelForm.css";
 import AuthService from "../services/auth.service";
 import CrudService from "../services/CrudService";
 
@@ -28,16 +28,20 @@ const CreateLabelForm = () => {
 
   const saveLabelToApi = () => {
     console.log("hello from saveLabelToApi");
-    CrudService.saveLabel(label)
-      .then((response) => {
-        console.log(response.data);
-        this.setState({
-          message: "The label was saved successfully!",
+    if (label !== "") {
+      CrudService.saveLabel(label)
+        .then((response) => {
+          console.log(response.data);
+          this.setState({
+            message: "The label was saved successfully!",
+          });
+        })
+        .catch((e) => {
+          console.log(e);
         });
-      })
-      .catch((e) => {
-        console.log(e);
-      });
+    } else {
+      alert("you need to fill in the form!");
+    }
   };
 
   const deleteLabelFromApi = (id) => {
@@ -55,10 +59,8 @@ const CreateLabelForm = () => {
   };
 
   return (
-    <div className="createQuestionPage">
+    <div className="createLabelPage">
       <form id="form-user">
-        
-
         <div className="form-box">
           <label id="2">Create label</label>
           <input
@@ -72,31 +74,29 @@ const CreateLabelForm = () => {
         </div>
 
         <div className="buttons">
-          <button className="btnCancel">
-            <p className="btnText">Cancel</p>
-          </button>
           <button className="btnSend" onClick={saveLabelToApi}>
             <p className="btnText">Send</p>
+          </button>
+          <button className="btnCancel">
+            <p className="btnText">Cancel</p>
           </button>
         </div>
 
         <div>
           <p>--Labels--</p>
-          {allLabelsList.map((labelApi) => (
-            <li
-              className="listItems"
-              key={labelApi.id}
-              value={labelApi.id}
-            >
-              {labelApi.id + ". " + labelApi.label}
-              <button
-                className="btnDelete"
-                onClick={() => deleteLabelFromApi(labelApi.id)}
-              >
-                <p className="btnText">Delete</p>
-              </button>
-            </li>
-          ))}
+          <div className="listBox">
+            {allLabelsList.map((labelApi) => (
+              <li className="listItems" key={labelApi.id} value={labelApi.id}>
+                {labelApi.id + ". " + labelApi.label}
+                <button
+                  className="btnDelete"
+                  onClick={() => deleteLabelFromApi(labelApi.id)}
+                >
+                  <p className="btnText">Delete</p>
+                </button>
+              </li>
+            ))}
+          </div>
         </div>
       </form>
     </div>
