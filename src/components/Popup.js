@@ -10,6 +10,7 @@ function Popup(props) {
   const [question_id, setQuestion_id] = useState(0);
   const [timeSpent, setTimeSpent] = useState(0);
   const [user_id, setUserId] = useState(0);
+
   const currentUser = AuthService.getCurrentUser();
 
   /* useEffect(() => {
@@ -29,11 +30,13 @@ function Popup(props) {
     );
   }, []); */
 
-  const saveAnswerToApi = () => {
-    setLabel(props.clickedLabel);
+  useEffect(() => {
     setUserId(currentUser.id);
-    console.log("hello from saveAnswerToApi");
-    if (user_id !== null) {
+    setLabel(props.clickedLabel);
+  }, [props, currentUser]);
+
+  const saveAnswerToApi = () => {
+    if (user_id > 0) {
       CrudService.saveAnswer(
         comment,
         created_date,

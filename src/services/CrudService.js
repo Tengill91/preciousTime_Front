@@ -101,7 +101,7 @@ class CrudService {
   }
 
   saveAnswer(comment, created_date, label, question_id, time, user_id) {
-    //challenge is a param name for our data
+    console.log(user_id);
     return axios.post(
       CRUD_API_URL + `/addAnswer`,
       { comment, created_date, label, question_id, time, user_id },
