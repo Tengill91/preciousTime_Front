@@ -87,7 +87,6 @@ function Popup(props) {
         <div>
           <form id="form-Label">
             <div className="form-box">
-              <label id="2">How mutch time did you spend?</label>
               <input
                 type="text"
                 id="input-description"
