@@ -140,7 +140,7 @@ const CreateQuestionForm = () => {
               key={questionApi.id}
               value={questionApi.id}
             >
-              {questionApi.id + ". " + questionApi.question}
+              {questionApi.id + ". " + questionApi.question + " -" + questionApi.label}
               <button
                 className="btnDelete"
                 onClick={() => deleteQuestionFromApi(questionApi.id)}

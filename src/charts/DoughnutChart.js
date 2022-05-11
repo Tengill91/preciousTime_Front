@@ -11,6 +11,7 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 function DoughnutChart() {
   const [buttonPopup, setButtonPopup] = useState(false);
   const [allLabelsList, setAllLabelsList] = useState([]);
+  const [clickedLabel, setClickedLabel] = useState("");
 
   useEffect(() => {
     CrudService.getAllLabels().then(
@@ -69,22 +70,26 @@ function DoughnutChart() {
             onClick: function (evt, element) {
               if (element.length > 0) {
                 // eleement är den man trycker på
-                console.log(element, element[0].index);
+                //console.log(element, element[0].index);
                 // you can also get dataset of your selected element
                 //console.log(doughnutData.datasets[element[0].datasetIndex]);
 
-                console.log(doughnutData.labels[element[0].index]);
+                //console.log(doughnutData.labels[element[0].index]);
                 //console.log(doughnutData.datasets[element[0].index].data[element[0].index]);
 
+                setClickedLabel(doughnutData.labels[element[0].index]);
                 setButtonPopup(true);
               }
             },
           }}
         />
         {/* skapar props variabler tex "trigger" och "setTrigger" och skickar dom med props till Popup.js */}
-        <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
-          <h3>Hello there</h3>
-          <p>This is a button triggered popup</p>
+        {console.log(clickedLabel)}
+        <Popup
+          trigger={buttonPopup}
+          setTrigger={setButtonPopup}
+          clickedLabel={clickedLabel}
+        > 
         </Popup>
       </div>
     </div>

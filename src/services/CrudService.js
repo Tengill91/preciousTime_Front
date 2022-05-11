@@ -100,6 +100,19 @@ class CrudService {
     );
   }
 
+  saveAnswer(comment, created_date, label, question_id, time, user_id) {
+    //challenge is a param name for our data
+    return axios.post(
+      CRUD_API_URL + `/addAnswer`,
+      { comment, created_date, label, question_id, time, user_id },
+      {
+        headers: authHeader(),
+        "Content-type": "application/json",
+        "Response-type": "application/json",
+      }
+    );
+  }
+
   showChallenges(userId) {
     return axios.get(CRUD_API_URL + `/listChallenges/${userId}`, {
       headers: authHeader(),

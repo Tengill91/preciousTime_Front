@@ -60,7 +60,7 @@ const CreateLabelForm = () => {
 
   return (
     <div className="createLabelPage">
-      <form id="form-user">
+      <form id="form-Label">
         <div className="form-box">
           <label id="2">Create label</label>
           <input

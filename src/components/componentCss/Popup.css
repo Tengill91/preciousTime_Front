@@ -11,6 +11,7 @@
     background-color: rgba(0,0,0,0.2);
 }
 .popup-inner{
+    display: flex;
     position: relative;
     padding: 32px;
     width: 100%;

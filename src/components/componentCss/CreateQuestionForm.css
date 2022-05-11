@@ -53,7 +53,8 @@
       flex-direction: column;
       height: fit-content;
       max-height: 250px;
-      background-color: gainsboro;
+      max-width: 400px;
+      gap: 2px;
       overflow: auto;
       border-radius: 4px;
       
@@ -64,6 +65,7 @@
     align-content: center;
     justify-content: space-between;
     margin-top: 4px;
+    
     
 
   }
