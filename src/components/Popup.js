@@ -10,8 +10,33 @@ function Popup(props) {
   const [question_id, setQuestion_id] = useState(0);
   const [timeSpent, setTimeSpent] = useState(0);
   const [user_id, setUserId] = useState(0);
+  const [randomQuestion, setRandomQuestion] = useState("");
+  const [allQuestionsList, setAllQuestionsList] = useState([]);
 
   const currentUser = AuthService.getCurrentUser();
+
+  useEffect(() => {
+    CrudService.getAllQuestions().then(
+      (response) => {
+        setAllQuestionsList(response.data);
+      },
+      (error) => {
+        const _questions =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+        setAllQuestionsList(_questions);
+      }
+    );
+  }, []);
+
+  // get random questions
+  const getRandomQuestion = () => {
+    const int = Math.floor(Math.random() * allQuestionsList.length);
+    setRandomQuestion(allQuestionsList[int]);
+  };
 
   /* useEffect(() => {
     CrudService.getAllLabels().then(
@@ -108,6 +133,8 @@ function Popup(props) {
 
             <div>
               <p>--Labels--</p>
+              <button onClick={getRandomQuestion}> random question</button>
+              <p>{randomQuestion.question}</p>
               {/* <div className="listBox">
             {allLabelsList.map((labelApi) => (
               <li className="listItems" key={labelApi.id} value={labelApi.id}>

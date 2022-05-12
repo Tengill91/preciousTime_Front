@@ -2,7 +2,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
     position:fixed;
     top: 0;
     left: 0;
@@ -12,7 +11,10 @@
 }
 .popup-inner{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+    word-break: break-all;
+    white-space: none;
     position: relative;
     padding: 32px;
     width: 100%;
