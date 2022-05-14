@@ -1,7 +1,6 @@
 import axios from "axios";
 import authHeader from "./auth-header";
 const CRUD_API_URL = "http://localhost:8080/api/crud";
-//const CRUD_API_URL = "https://greenleafswe.herokuapp.com/crud";
 
 class CrudService {
   getAllUsers() {
@@ -20,6 +19,13 @@ class CrudService {
 
   getAllLabels() {
     return axios.get(CRUD_API_URL + "/allLabels", {
+      headers: authHeader(),
+      "Response-type": "application/json",
+    });
+  }
+  getAllAnswers() {
+    console.log("hello: ");
+    return axios.get(CRUD_API_URL + "/allAnswers", {
       headers: authHeader(),
       "Response-type": "application/json",
     });
