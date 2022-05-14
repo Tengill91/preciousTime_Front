@@ -24,7 +24,6 @@ class CrudService {
     });
   }
   getAllAnswers() {
-    console.log("hello: ");
     return axios.get(CRUD_API_URL + "/allAnswers", {
       headers: authHeader(),
       "Response-type": "application/json",

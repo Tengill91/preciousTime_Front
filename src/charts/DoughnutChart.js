@@ -16,12 +16,12 @@ function DoughnutChart() {
   const [clickedLabel, setClickedLabel] = useState("");
   const currentUser = AuthService.getCurrentUser();
 
-  const [familyTime, setFamilyTime] = useState(0);
-  const [workTime, setWorkTime] = useState(0);
-  const [learningTime, setLearningTime] = useState(0);
-  const [hobbyTime, setHobbyTime] = useState(0);
-  const [funTime, setFunTime] = useState(0);
-  const [physicalActivityTime, setPhysicalActivityTime] = useState(0);
+  const [familyTime, setFamilyTime] = useState(1);
+  const [workTime, setWorkTime] = useState(1);
+  const [learningTime, setLearningTime] = useState(1);
+  const [hobbyTime, setHobbyTime] = useState(1);
+  const [funTime, setFunTime] = useState(1);
+  const [physicalActivityTime, setPhysicalActivityTime] = useState(1);
 
   useEffect(() => {
     CrudService.getAllLabels().then(
@@ -59,36 +59,62 @@ function DoughnutChart() {
 
   useEffect(() => {
     function sortTimeToLabels() {
-      console.log("hello");
+      let allFamilyTime = 0;
+      let allWorkTime = 0;
+      let allLearningTime = 0;
+      let allHobbyTime = 0;
+      let allFunTime = 0;
+      let allPhysicalActivityTime = 0;
+      console.log("hello lets sort!");
       allAnswersList.map((answerApi) => {
-        switch (String(answerApi.label).toLocaleLowerCase) {
-          case "family":
-            setFamilyTime(familyTime + answerApi.time);
+        switch (String(answerApi.label)) {
+          case "Family":
+            allFamilyTime = allFamilyTime + answerApi.time;
             break;
-          case "work":
-            setWorkTime(workTime + answerApi.time);
+          case "Work":
+            allWorkTime = allWorkTime + answerApi.time;
             break;
-          case "learning":
-            setLearningTime(learningTime + answerApi.time);
+          case "Learning":
+            allLearningTime = allLearningTime + answerApi.time;
             break;
-          case "hobby":
-            setHobbyTime(hobbyTime + answerApi.time);
+          case "Hobby":
+            allHobbyTime = allHobbyTime + answerApi.time;
             break;
-          case "fun":
-            setFunTime(funTime + answerApi.time);
+          case "Fun":
+            allFunTime = allFunTime + answerApi.time;
             break;
-          case "physical activity":
-            setFamilyTime(physicalActivityTime + answerApi.time);
+          case "Physical activity":
+            allPhysicalActivityTime = allPhysicalActivityTime + answerApi.time;
             break;
 
           default:
-            console.log("cant find label for adding time");
+            console.log("cant find label for adding time " + answerApi.label);
             break;
         }
         return "";
       });
-      sortTimeToLabels();
+
+      console.log("Family time: " + allFamilyTime);
+      if (allFamilyTime > 0) {
+        setFamilyTime(familyTime + allFamilyTime);
+      }
+      if (allWorkTime > 0) {
+        setWorkTime(allWorkTime);
+      }
+      if (allLearningTime > 0) {
+        setLearningTime(allLearningTime);
+      }
+      if (allHobbyTime > 0) {
+        setHobbyTime(allHobbyTime);
+      }
+      if (allFunTime > 0) {
+        setFunTime(allFunTime);
+      }
+      if (allPhysicalActivityTime > 0) {
+        setPhysicalActivityTime(allPhysicalActivityTime);
+      }
     }
+    sortTimeToLabels();
   }, [allAnswersList]);
 
   // "Family", "Work", "Learning", "Hobby", "Fun", "Physical activity"
