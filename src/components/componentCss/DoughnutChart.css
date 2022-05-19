@@ -11,6 +11,8 @@
     text-align: center;
   }
     .fade-in-text {
+      color: cornflowerblue;
+      text-align: center;
       animation: fadeIn linear 3s;
       -webkit-animation: fadeIn linear 3s;
       -moz-animation: fadeIn linear 3s;

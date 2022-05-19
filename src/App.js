@@ -11,6 +11,7 @@ import BoardUser from "./components/BoardUser";
 import BoardModerator from "./components/BoardModerator";
 import BoardAdmin from "./components/BoardAdmin";
 import Navbar from "./components/Navbar";
+import QuestionPage from "./components/QuestionPage";
 
 //Todo add automatic signout
 const App = () => {
@@ -42,6 +43,7 @@ const App = () => {
           <Route path="/user" element={<BoardUser />} />
           <Route path="/mod" element={<BoardModerator />} />
           <Route path="/admin" element={<BoardAdmin />} />
+          <Route path="/questionpage" element={<QuestionPage />} />
         </Routes>
       </div>
     </div>

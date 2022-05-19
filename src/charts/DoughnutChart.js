@@ -156,7 +156,7 @@ function DoughnutChart() {
   return (
     <div className="doughnut">
       <div className="fade-in-text">
-        <h1>How will you spend your time today?</h1>
+        <h1 className="headerText">How will you spend your time today?</h1>
         {console.log(allAnswersList)}
       </div>
       <div style={{ width: "100%" }}>
