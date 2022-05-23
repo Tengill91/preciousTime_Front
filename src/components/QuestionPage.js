@@ -50,7 +50,7 @@ function QuestionPage(props) {
         <div className="randomButton">
           <button onClick={getRandomQuestion}> random question</button>
           <p>{randomQuestion.question}</p>
-          {console.log("hello " + props.location.state)}
+          {console.log("hello " + props.data)}
         </div>
       </div>
     </div>
