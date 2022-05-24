@@ -1,6 +1,6 @@
 /* Userpage */
 .user{
-    background-image: linear-gradient(to top, #043b5f , 	#B6D0E2 );
+    /* background-image: linear-gradient(to top, #043b5f , 	#B6D0E2 ); */
     display: flex;
     white-space: pre-line;
     height: 90vh;

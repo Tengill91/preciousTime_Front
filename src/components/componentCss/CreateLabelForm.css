@@ -51,7 +51,7 @@
     flex-direction: column;
     height: fit-content;
     max-height: 262px;
-    background-color: gainsboro;
+    background-color: rgb(202, 200, 200);
     overflow: auto;
     border-radius: 4px;
     align-self: flex-end;

@@ -47,11 +47,6 @@ function QuestionPage(props) {
             </li>
           ))}
         </div>
-        <div className="randomButton">
-          <button onClick={getRandomQuestion}> random question</button>
-          <p>{randomQuestion.question}</p>
-          {console.log("hello " + props.data)}
-        </div>
       </div>
     </div>
   );

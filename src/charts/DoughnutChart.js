@@ -133,12 +133,12 @@ function DoughnutChart() {
           physicalActivityTime,
         ],
         backgroundColor: [
-          "rgba(255, 99, 132, 0.2)",
-          "rgba(75, 192, 192, 0.2)",
-          "rgba(54, 162, 235, 0.2)",
-          "rgba(255, 206, 86, 0.2)",
-          "rgba(153, 102, 255, 0.2)",
-          "rgba(255, 159, 64, 0.2)",
+          "rgba(255, 99, 132, 0.4)",
+          "rgba(75, 192, 192, 0.4)",
+          "rgba(54, 162, 235, 0.4)",
+          "rgba(255, 206, 86, 0.4)",
+          "rgba(153, 102, 255, 0.4)",
+          "rgba(255, 159, 64, 0.4)",
         ],
         borderColor: [
           "rgba(255, 99, 132, 1)",
@@ -154,12 +154,12 @@ function DoughnutChart() {
   };
 
   return (
-    <div className="doughnut">
+    <div className="doughnutPage">
       <div className="fade-in-text">
         <h1 className="headerText">How will you spend your time today?</h1>
         {console.log(allAnswersList)}
       </div>
-      <div style={{ width: "100%" }}>
+      <div className="doughnut">
         <Doughnut
           data={doughnutData}
           options={{

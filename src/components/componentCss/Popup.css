@@ -20,10 +20,18 @@
     width: 100%;
     max-width: 640px;
     border-radius: 10px;
-    background-color: #fff;
+    background-color: #f7f7f7c1;
 }
 .popup-inner .close-btn{
     position: absolute;
     top: 16px;
     right: 16px;
+    border-radius: 8px;
+    border: none;
+    padding: 4px;
+
+}
+.input{
+    border-radius: 20px;
+    border:none;
 }
