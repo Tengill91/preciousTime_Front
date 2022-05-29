@@ -14,7 +14,6 @@ function DoughnutChart() {
   const [allLabelsList, setAllLabelsList] = useState([]);
   const [allAnswersList, setAllAnswersList] = useState([]);
   const [clickedLabel, setClickedLabel] = useState("");
-  const currentUser = AuthService.getCurrentUser();
 
   const [familyTime, setFamilyTime] = useState(1);
   const [workTime, setWorkTime] = useState(1);
