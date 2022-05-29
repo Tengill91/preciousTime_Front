@@ -109,12 +109,7 @@ function Popup(props) {
 
             <div>
               <p>Whant insperation?</p>
-              <Link
-                to={{
-                  pathname: "/questionpage",
-                  state: "hello from Popup",
-                }}
-              >
+              <Link to="/questionpage" state={{ label: props.clickedLabel }}>
                 Click me
               </Link>
               {/* <div className="listBox">

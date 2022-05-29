@@ -4,11 +4,12 @@ import "./componentCss/QuestionPage.css";
 import { useLocation } from "react-router-dom";
 
 function QuestionPage(props) {
-  const [randomQuestion, setRandomQuestion] = useState("");
   const [allQuestionsList, setAllQuestionsList] = useState([]);
+  const [sortedQuestionsList, setSortedQuestionsList] = useState();
 
-  /* const location = useLocation();
-  const label = location.state?.label; */
+  // getting state data from Link in Popup
+  const location = useLocation();
+  const { label } = location.state;
 
   useEffect(() => {
     CrudService.getAllQuestions().then(
@@ -27,17 +28,30 @@ function QuestionPage(props) {
     );
   }, []);
 
-  // get random questions
-  const getRandomQuestion = () => {
-    const int = Math.floor(Math.random() * allQuestionsList.length);
-    setRandomQuestion(allQuestionsList[int]);
-  };
+  useEffect(() => {
+    //console.log(allQuestionsList)
+    let sortedList = [];
+    try {
+      if (allQuestionsList.length > 1)
+        allQuestionsList.forEach((element) => {
+          if (element.label === label) {
+            sortedList.push(element);
+          }
+        });
+      if (sortedList.length > 1) {
+        console.log("hello");
+        setSortedQuestionsList(sortedList);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }, [label, allQuestionsList]);
 
   return (
     <div className="questionpage">
       <div className="mainQuestionDiv">
         <div className="questionListBox">
-          {allQuestionsList.map((questionApi) => (
+          {sortedQuestionsList?.map((questionApi) => (
             <li
               className="listItems"
               key={questionApi.id}

@@ -65,7 +65,6 @@ function DoughnutChart() {
       let allHobbyTime = 0;
       let allFunTime = 0;
       let allPhysicalActivityTime = 0;
-      console.log("hello lets sort!");
       allAnswersList.map((answerApi) => {
         switch (String(answerApi.label)) {
           case "Family":
@@ -157,7 +156,6 @@ function DoughnutChart() {
     <div className="doughnutPage">
       <div className="fade-in-text">
         <h1 className="headerText">How will you spend your time today?</h1>
-        {console.log(allAnswersList)}
       </div>
       <div className="doughnut">
         <Doughnut
@@ -180,7 +178,6 @@ function DoughnutChart() {
           }}
         />
         {/* skapar props variabler tex "trigger" och "setTrigger" och skickar dom med props till Popup.js */}
-        {console.log(clickedLabel)}
         <Popup
           trigger={buttonPopup}
           setTrigger={setButtonPopup}

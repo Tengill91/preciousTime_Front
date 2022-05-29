@@ -40,3 +40,6 @@
     background-color: #f7f7f7a5;
 
   }
+  .listItems:hover{
+    background-color: #f7f7f7f3;
+  }
